@@ -1,0 +1,37 @@
+html, body, #map-canvas {
+ height: 100%; 
+ margin: 0; 
+ padding: 0;
+}
+.color {
+        border: 1px solid;
+        height: 12px;
+        width: 12px;
+        margin-right: 3px;
+        float: left;
+      }
+
+      .red {
+        background: #C00;
+      }
+
+      .yellow {
+        background: #FF3;
+      }
+
+      .green {
+        background: #6F0;
+      }
+
+      .blue {
+        background: #06C;
+      }
+
+      .purple {
+        background: #63C;
+      }
+
+#legend {
+    background: white;
+    padding: 10px;
+}
