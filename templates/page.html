@@ -8,14 +8,60 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrQoxb5Z33_2lB6_4WkKUHlMFKAVwf_bw">
           </script>
               <script type="text/javascript">
-      function initialize() {
-                  var mapOptions = {
-                                center: { lat: -34.397, lng: 150.644},
-                                                  zoom: 8
-                                                              };
-                          var map = new google.maps.Map(document.getElementById('map-canvas'),
-                                              mapOptions);
-                                }
+			  
+	var map;
+	
+	function addMarker() {
+		var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+
+		var marker = new google.maps.Marker({
+			position: myLatlng,
+			map: map,
+			title: 'Hello World!'
+		});
+		
+		google.maps.event.addListener(marker, 'click', function() {
+			addAnotherMarker(-20.1231, 140);
+			addAnotherMarker(-45.2342, 130);
+
+		});
+	}
+	
+	function addAnotherMarker(lat, lon) {
+		var myLatlng = new google.maps.LatLng(lat, lon);
+
+		var m = new google.maps.Marker({
+			position: myLatlng,
+			map: map,
+			title: 'Hello!'
+		});
+	}
+	
+	function zoomChange() {
+		var zoomLevel = map.getZoom();
+		console.log(zoomLevel);
+		
+		if (zoomLevel >= 9) {
+			addAnotherMarker(-35, 160);
+		} else {
+			if (zoomLevel >= 4) {
+				addAnotherMarker(-33, 165);
+			} else {
+				addAnotherMarker(-38, 170);
+			}
+		}
+	}
+	
+	function initialize() {
+		var mapOptions = {
+		center: { lat: -34.397, lng: 150.644}, zoom: 8};
+		
+		map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+		
+		google.maps.event.addListener(map, 'zoom_changed', zoomChange);
+		
+		addMarker();
+	}
       google.maps.event.addDomListener(window, 'load', initialize);
           </script>
             </head>
